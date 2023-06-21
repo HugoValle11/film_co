@@ -21,17 +21,25 @@ function Main(props){
 
                 {props.movieInformation.movieTitle && 
                 <div className="main--movieInfo">
-                    <img src={props.movieInformation.moviePoster} />
-                    <p>{props.movieInformation.movieTitle}</p>
-                    <p>{props.movieInformation.movieTitle}</p>
-                    <p>{props.movieInformation.movieYear}</p>
+                    <div className="main--moviePoster">
+                        <img src={props.movieInformation.moviePoster} />
+                    </div>
 
+                    <div className="main--side">
+                        <div className="main--infoText">
+                            <p><b>Movie Title:</b> <em>{props.movieInformation.movieTitle}</em></p>
+                            <p><b>Year of release:</b> <em>{props.movieInformation.movieYear}</em></p>
+                            <p><b>Runtime:</b> <em>{props.movieInformation.movieRuntime}</em></p>
+                            <p><b>Directed by:</b> <em>{props.movieInformation.movieDirector}</em></p>
+                        </div>
+                        <button className="main--button" onClick={props.handleAdd}>Add</button>
+                    </div>
                 </div>
                 }
 
                 <form className="main--form">
                     <input onChange={props.getMovie} className="main--input" type="search" placeholder="Search for a movie..." />
-                    <button onClick={props.handleClick} className="main--submit">GO!</button>
+                    <button onClick={props.handleGoClick} className="main--submit">GO!</button>
                 </form>
 
 

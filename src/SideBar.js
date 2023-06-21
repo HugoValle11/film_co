@@ -9,7 +9,7 @@ function SideBar(){
                     <img className="sidebar--png sidebar--logo img-fluid" src={Logo} height="300px"/>
                 
 
-                    <div className="sidebar--options">
+                    {false && <div className="sidebar--options">
                         <Option
                         texto ="This is movie #1"
                         />
@@ -20,8 +20,9 @@ function SideBar(){
                         texto ="This is movie #3"
                         />
                     </div>
+                    }
 
-                    <button className="sidebar--button">Generate</button>
+                    {false && <button className="sidebar--button">Generate</button>}
                 </div>
 
     )

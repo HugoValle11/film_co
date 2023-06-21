@@ -12,16 +12,30 @@ function App() {
   const [movieInfo, setMovieInfo] = React.useState({
     movieYear: '',
     moviePoster: '',
-    movieTitle: ''
+    movieTitle: '',
+    movieRuntime: '',
+    movieDirector: ''
   });
 
   const [movieList, setMovieList] = React.useState([])
+
+
+  const handleAddClick = () => {
+    console.log("done");
+
+  }
+
+
+
+
+
+
+
 
   const handleChange = (event) =>{
     setMovie(event.target.value)
   }
   
-
   const getData = (e) => {
     e.preventDefault()
     const apikey = "571cd602";
@@ -31,22 +45,27 @@ function App() {
     const req = url + movieRequested + "&apikey=" + apikey;
     
     fetch(req)
-      .then((res) => res.json())
-      .then((data) => {
-
+    .then((res) => res.json())
+    .then((data) => {
+      if (data["Response"] === "False") {
+        // Movie not found, display error message
+        alert("Movie not found: " + data["Error"]);
+      } else {
+        // Movie found, update the movie info
         setMovieInfo({
           movieYear: data["Year"],
           moviePoster: data["Poster"],
-          movieTitle: data["Title"]
-        })
-
+          movieTitle: data["Title"],
+          movieRuntime: data["Runtime"],
+          movieDirector: data["Director"],
+        });
+      }
+  
       setMovie("");
     })
-      .catch((error) => {
+    .catch((error) => {
       console.error("Error fetching movie data:", error);
-  });
-
-
+    });
   }
 
   return (
@@ -54,9 +73,10 @@ function App() {
           <SideBar />
           <Main 
           getMovie={handleChange}
-          handleClick = {getData}
+          handleGoClick = {getData}
           value = {movie}
           movieInformation ={movieInfo}
+          handleAdd = {handleAddClick}
           />
           
       </div>
@@ -64,8 +84,4 @@ function App() {
 }
 
 export default App;
-
-
-
-
 
